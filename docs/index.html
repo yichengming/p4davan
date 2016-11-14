@@ -16,9 +16,11 @@
       var download_fw=function (fw_pid, fw_ver) {
         var base_url = "https://github.com/ihacklog/p4davan/raw/master/down/rom/";
         var url = base_url + fw_pid + "/" + fw_pid + "_" + fw_ver + ".trx";
-        if(!window.open(url)){ // popup blocked, offer direct download:
-          if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
-        }
+        var link=document.createElement('a');
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.href=url ;
+        link.click();
       }
     </script>
   </head>
