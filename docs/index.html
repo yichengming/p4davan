@@ -12,6 +12,15 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script>
+      var download_fw=function (fw_pid, fw_ver) {
+        var base_url = "https://github.com/ihacklog/p4davan/raw/master/down/rom/";
+        var url = base_url + fw_pid + "/" + fw_pid + "_" + fw_ver + ".trx";
+        if(!window.open(url)){ // popup blocked, offer direct download:
+          if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
+        }
+      }
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -20,9 +29,9 @@
         <p class="header">Padavan RT-N56U firmware site by HuangYeWuDeng</p>
 
         <ul>
-          <li class="download"><a class="buttons" target="_blank" href="https://github.com/ihacklog/p4davan/raw/master/down/rom/NEWIFI-D1/NEWIFI-D1_3.4.3.9-099_20161114-0136.trx">NEWIFI-D1</a></li>
-          <li class="download"><a class="buttons" target="_blank" href="https://github.com/ihacklog/p4davan/raw/master/down/rom/NEWIFI-Y1/NEWIFI-Y1_3.4.3.9-099_20161113-0147.trx">NEWIFI-Y1</a></li>
-          <li class="download"><a class="buttons" target="_blank" href="https://github.com/ihacklog/p4davan/raw/master/down/rom/PSG1218-K2/PSG1218-K2_3.4.3.9-099_20161114-1452.trx">PSG1218-K2</a></li>
+          <li class="download"><a class="buttons" target="_blank" href="javascript:download_fw('NEWIFI-D1', '3.4.3.9-099_20161114-0136');">NEWIFI-D1</a></li>
+          <li class="download"><a class="buttons" target="_blank" href="javascript:download_fw('NEWIFI-Y1', '3.4.3.9-099_20161113-0147');">NEWIFI-Y1</a></li>
+          <li class="download"><a class="buttons" target="_blank" href="javascript:download_fw('PSG1218-K2', '3.4.3.9-099_20161114-1452');">PSG1218-K2</a></li>
         </ul>
 
         <p class="header">This project is maintained by <a class="header name" href="http://80x86.io">ihacklog</a></p>
