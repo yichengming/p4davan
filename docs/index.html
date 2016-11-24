@@ -107,7 +107,9 @@ shellinabox</p></li>
     var k2_ver = '';
     var get_rom_release=function(product_id) {
       $.get('release/' + product_id + '.txt', function(version){
-        $('#'+product_id).bind('click', function(){
+        $btn = $('#'+product_id);
+        $btn.attr('title', version);
+        $btn.bind('click', function(){
           download_fw(product_id, version);
         });
       });
