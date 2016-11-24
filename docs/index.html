@@ -12,17 +12,7 @@
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <![endif]-->
-    <script>
-      var download_fw=function (fw_pid, fw_ver) {
-        var base_url = "https://github.com/ihacklog/p4davan/raw/master/down/rom/";
-        var url = base_url + fw_pid + "/" + fw_pid + "_" + fw_ver + ".trx";
-        var link=document.createElement('a');
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.href=url ;
-        link.click();
-      }
-    </script>
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -31,9 +21,9 @@
         <p class="header">Padavan RT-N56U firmware site by HuangYeWuDeng</p>
 
         <ul>
-          <li class="download"><a class="buttons" href="javascript:download_fw('NEWIFI-D1', '3.4.3.9-099_20161115-1916');">NEWIFI-D1</a></li>
-          <li class="download"><a class="buttons" href="javascript:download_fw('NEWIFI-Y1', '3.4.3.9-099_20161115-1755');">NEWIFI-Y1</a></li>
-          <li class="download"><a class="buttons" href="javascript:download_fw('PSG1218-K2', '3.4.3.9-099_20161115-1901');">PSG1218-K2</a></li>
+          <li class="download"><a class="buttons" id="NEWIFI-D1" href="javascript:void(0);">NEWIFI-D1</a></li>
+          <li class="download"><a class="buttons" id="NEWIFI-Y1" href="javascript:void(0);">NEWIFI-Y1</a></li>
+          <li class="download"><a class="buttons" id="PSG1218-K2" href="javascript:void(0);">PSG1218-K2</a></li>
         </ul>
 
         <p class="header">This project is maintained by <a class="header name" href="http://80x86.io">80x86.io</a></p>
@@ -80,7 +70,7 @@ shellinabox</p></li>
 
 <ol>
 <li>因个人时间有限，不接受特定版本编译的请求。</li>
-<li>扩展界面是有意设置为英文的，暂时没有汉化的打算。
+<li>扩展界面从最开始便是英文的，暂时没有汉化的打算。
 会用的人低调使用就好。</li>
 <li>祝大家玩得开心。</li>
 </ol>
@@ -98,4 +88,33 @@ shellinabox</p></li>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
 
   </body>
+
+<script>
+  $(function(){
+    var all_products = new Array("NEWIFI-D1", "NEWIFI-Y1", "PSG1218-K2");
+    var download_fw=function (fw_pid, fw_ver) {
+//      var base_url = "https://coding.net/u/c0ding/p/p4davan/git/raw/master/down/rom";
+      var base_url = "https://github.com/ihacklog/p4davan/raw/master";
+      var url = base_url + "/down/rom/" + fw_pid + "/" + fw_ver + ".trx";
+      var link=document.createElement('a');
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.href=url ;
+      link.click();
+    };
+    var d1_ver = '';
+    var y1_ver = '';
+    var k2_ver = '';
+    var get_rom_release=function(product_id) {
+      $.get('release/' + product_id + '.txt', function(version){
+        $('#'+product_id).bind('click', function(){
+          download_fw(product_id, version);
+        });
+      });
+    }
+    for (i = 0; i < all_products.length; i++) {
+      get_rom_release(all_products[i]);
+    }
+  });
+</script>
 </html>
