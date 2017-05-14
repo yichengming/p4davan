@@ -110,13 +110,14 @@ shellinabox</p></li>
   $(function(){
     var all_products = new Array("NEWIFI-D1", "NEWIFI-Y1", "PSG1218-K2", "PSG1218-K2-256M", "YOUKU-L1");
     var download_fw=function (fw_pid, fw_ver) {
-      var base_url_cd = "https://coding.net/u/c0ding/p/p4davan-fw/git/raw/master";
+      var base_url_mirror = "http://router.mirror1.80x86.io:8088";
       var base_url_gh = "https://github.com/ihacklog/p4davan-fw/raw/master";
-      var base_url = base_url_cd;
+      var base_url = base_url_mirror;
+      var url = base_url + "/" + fw_pid + "/" + fw_ver + ".trx";
       if (top.window.location.hostname == "p4davan.80x86.io") {
         base_url = base_url_gh;
+        url = base_url + "/down/rom/" + fw_pid + "/" + fw_ver + ".trx";
       }
-      var url = base_url + "/down/rom/" + fw_pid + "/" + fw_ver + ".trx";
       var link=document.createElement('a');
       link.style.display = "none";
       document.body.appendChild(link);
